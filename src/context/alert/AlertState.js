@@ -1,0 +1,46 @@
+import React, { useReducer } from 'react'
+
+// Import context
+import AlertContext from './alertContext'
+
+// Import reducer
+import AlertReducer from './alertReducer'
+
+// Import types
+import { SET_ALERT, REMOVE_ALERT, CLOSE_ALERT } from '../Types'
+
+const AlertState = (props) => {
+  const initialState = null
+
+  const [state, dispatch] = useReducer(AlertReducer, initialState)
+
+  //  Set Alert
+  const setAlert = (msg, type) => {
+    dispatch({
+      type: SET_ALERT,
+      payload: { msg, type },
+    })
+    setTimeout(() => dispatch({ type: REMOVE_ALERT }), 5000)
+  }
+
+  // Close alert
+  const onClose = () => {
+    dispatch({
+      type: CLOSE_ALERT,
+    })
+  }
+
+  return (
+    <AlertContext.Provider
+      value={{
+        alert: state,
+        setAlert,
+        onClose,
+      }}
+    >
+      {props.children}
+    </AlertContext.Provider>
+  )
+}
+
+export default AlertState
