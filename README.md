@@ -1,5 +1,7 @@
 # Github Finder
 
+## URL: https://githubfinder7748.netlify.app/
+
 Github Finder is a Github's user finder web app. Here you can search for users and can view their data.
 
 It's a fully hooks based react app with Context.
